@@ -21,6 +21,7 @@ export default createGlobalStyle`
   div{
     display:flex;
     flex-direction:column;
+    align-items:center;
   }
   ul {
     list-style: none;
