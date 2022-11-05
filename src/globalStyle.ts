@@ -13,7 +13,7 @@ export default createGlobalStyle`
     height: 100%;
   }
   body {
-    font: 15px 'Comfortaa', cursive;
+    font: 15px 'Comfortaa', sans-serif;
     background: ${Colors.dark};
     color: ${Colors.white};
     -webkit-font-smoothing: antialiased !important;

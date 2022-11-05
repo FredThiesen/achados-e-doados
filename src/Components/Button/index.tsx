@@ -1,10 +1,11 @@
 import React, { memo } from "react"
 import colors from "../../Constants/colors"
-import { Wrapper } from "./styles"
+import { Title, Wrapper, WrapperTitle } from "./styles"
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	title: string
 	color?: string
+	outline?: boolean
 	titleColor?: string
 	loading?: boolean
 	size?: "small" | "medium" | "large"
@@ -19,19 +20,25 @@ export const Button = memo((props: ButtonProps) => {
 		titleColor = colors.white,
 		loading = false,
 		onClick = () => null,
+		outline = false,
 	} = props
 
 	const renderTitle = () => {
-		if (loading) {
-			return <div className="lds-dual-ring"></div>
-		}
-		return title
+		return (
+			<WrapperTitle>
+				<Title>{title}</Title>
+			</WrapperTitle>
+		)
 	}
 
 	return (
-		<Wrapper onClick={onClick}>
+		<Wrapper
+			onClick={onClick}
+			color={color}
+			titleColor={titleColor}
+			outline={outline}
+		>
 			{renderTitle()}
-			{/* {renderLoading()} */}
 		</Wrapper>
 	)
 })
