@@ -23,7 +23,7 @@ export const Wrapper = styled.input<InputProps>`
 		background: none;
 	} */
 
-	width: 270px;
+	width: ${props=>props.width?props.width:'270px'};
 	height: 40px;
 	border: 1px solid ${({ color }) => color};
 	border-radius: 5px;

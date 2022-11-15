@@ -6,6 +6,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	color?: string
 	disabled?: boolean
 	onClick?: () => void
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export const Input = memo((props: InputProps) => {

@@ -1,5 +1,20 @@
-import React from "react"
-
+import React, { useContext, useEffect, useState } from "react"
+import { UserContext } from "../../Contexts/User"
+import { User } from "../../Interfaces/User";
+import {axiosRequest} from "../../Services"
 export const Home = () => {
-	return <div>index</div>
+	const value=useContext(UserContext);
+	const [users, setUsers]=useState<User[]>([])
+	useEffect(() => {
+		const axios= async () =>{
+			const request=await axiosRequest.get("/users")
+			setUsers(request.data)
+		}
+		axios();
+		
+	},[])
+	
+	return <div>{users.map(user=>(
+		<div>{user.name}</div>
+	))}</div>
 }

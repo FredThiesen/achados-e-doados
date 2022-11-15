@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
 // user context
 import { User } from "../Interfaces/User"
@@ -6,6 +7,7 @@ import { User } from "../Interfaces/User"
 interface UserContextProps {
 	user: User | null
 	setUser: (user: User | null) => void
+	
 }
 
 export const UserContext = createContext<UserContextProps | null>(null)
