@@ -24,6 +24,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 			const localToken = localStorage.getItem("token")
 			if (!isNil(localUser)) {
 				console.log("user no context", localUser)
+				// checar se localUser === 'undefined'
 				isObject(localUser) && setUser(JSON.parse(localUser))
 			}
 			if (!isNil(localToken)) {
