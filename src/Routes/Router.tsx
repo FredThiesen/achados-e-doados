@@ -12,7 +12,7 @@ export const router = createBrowserRouter([
 		element: <Home />,
 		errorElement: <Navigate to="/" />,
 	},
-	
+
 	{
 		path: "/login",
 		element: <AuthLogin />,

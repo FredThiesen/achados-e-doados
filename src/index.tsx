@@ -1,19 +1,19 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
 import GlobalStyle from "./globalStyle"
-import { UserProvider } from "./Contexts/User"
+import { UserProvider } from "./Contexts/UserContext"
 import { router } from "./Routes/Router"
 import { RouterProvider } from "react-router-dom"
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 root.render(
 	//<React.StrictMode>
-		<>
-			<GlobalStyle />
-			<UserProvider>
-				<RouterProvider router={router} />
-			</UserProvider>
-		</>
+	<>
+		<GlobalStyle />
+		<UserProvider>
+			<RouterProvider router={router} />
+		</UserProvider>
+	</>
 	//</React.StrictMode>
 )
 
