@@ -23,7 +23,5 @@ export default createGlobalStyle`
     flex-direction:column;
     align-items:center;
   }
-  ul {
-    list-style: none;
-  }
+
 `

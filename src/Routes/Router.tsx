@@ -9,7 +9,7 @@ import { SessionExpired } from "../Screens/SessionExpired"
 export const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <Home />,
+		element: <Landing />,
 		errorElement: <Navigate to="/" />,
 	},
 
