@@ -34,7 +34,7 @@ export const AuthLogin = () => {
 					<Title style={{ color: colors.green, marginBottom: 10 }}>
 						Achados e Doados
 					</Title>
-					<img src={logo} alt="logo" />
+					<img src={logo} alt="logo" width={"90%"} />
 				</WrapperColumn>
 				<WrapperColumn style={{ background: colors.green }}>
 					{/* justify - center */}

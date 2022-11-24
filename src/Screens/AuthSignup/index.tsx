@@ -51,16 +51,13 @@ export const AuthSignup = () => {
 	return (
 		<WrapperScreen>
 			<WrapperRow>
-				<WrapperColumn>
-					<Title style={{ color: colors.green }}>
+				<WrapperColumn
+					style={{ justifyContent: "center", alignItems: "center" }}
+				>
+					<Title style={{ color: colors.green, marginBottom: 10 }}>
 						Crie sua conta!
 					</Title>
-					<img
-						src={logo2}
-						alt="logo"
-						width={"90%"}
-						style={{ marginTop: 100 }}
-					/>
+					<img src={logo2} alt="logo" width={"90%"} />
 				</WrapperColumn>
 				<WrapperColumn style={{ background: colors.green }}>
 					<Title>Cadastro</Title>
