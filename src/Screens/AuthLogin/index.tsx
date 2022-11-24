@@ -4,6 +4,7 @@ import { Input } from "../../Components/Input"
 import { useUser } from "../../Hooks/useUser"
 import { useNavigate } from "react-router-dom"
 import colors from "../../Constants/colors"
+import logo from "../../Assets/logo.svg"
 
 import {
 	Subtitle,
@@ -28,7 +29,13 @@ export const AuthLogin = () => {
 	return (
 		<WrapperScreen>
 			<WrapperRow>
-				<WrapperColumn></WrapperColumn>
+				<WrapperColumn>
+					{/* logo from assets folder */}
+					<Title style={{ color: colors.green, marginBottom: 10 }}>
+						Achados e Doados
+					</Title>
+					<img src={logo} alt="logo" />
+				</WrapperColumn>
 				<WrapperColumn style={{ background: colors.green }}>
 					{/* justify - center */}
 					<Title>Faça Login</Title>

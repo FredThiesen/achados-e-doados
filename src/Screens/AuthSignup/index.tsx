@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { SignInRequest } from "../../Interfaces/SignInRequest"
 import { useUser } from "../../Hooks/useUser"
 import colors from "../../Constants/colors"
+import logo2 from "../../Assets/logo2.svg"
 
 import {
 	Title,
@@ -50,7 +51,17 @@ export const AuthSignup = () => {
 	return (
 		<WrapperScreen>
 			<WrapperRow>
-				<WrapperColumn></WrapperColumn>
+				<WrapperColumn>
+					<Title style={{ color: colors.green }}>
+						Crie sua conta!
+					</Title>
+					<img
+						src={logo2}
+						alt="logo"
+						width={"90%"}
+						style={{ marginTop: 100 }}
+					/>
+				</WrapperColumn>
 				<WrapperColumn style={{ background: colors.green }}>
 					<Title>Cadastro</Title>
 					<WrapperInput>
