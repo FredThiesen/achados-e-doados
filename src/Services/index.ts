@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export const url = "https://152.67.54.228/services"
+export const url = "https://timbeck.hopto.org/services"
 
 export const axiosRequest = axios.create({
 	baseURL: `${url}/`,
