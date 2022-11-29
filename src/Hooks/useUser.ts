@@ -1,21 +1,34 @@
-//use user hook
-
-import axios from "axios"
 import { useContext } from "react"
 import { UserContext } from "../Contexts/UserContext"
 import { LoginRequest } from "../Interfaces/LoginRequest"
+import { LoginResponse } from "../Interfaces/LoginResponse"
 import { SignInRequest } from "../Interfaces/SignInRequest"
-import { axiosRequest, url } from "../Services"
+import { User } from "../Interfaces/User"
+import { axiosRequest } from "../Services"
 
 export const useUser = () => {
 	const userContext = useContext(UserContext)
+
+	const makeUser = (response: LoginResponse): User => ({
+		name: response.name,
+		username: response.username,
+		address: response.address,
+		roles: response.roles,
+	})
+
+	// headers: {
+	// 	Authorization: `Bearer ${localStorage.getItem("token")}`,
+	// 	"Content-Type": "application/json",
+	// },
 
 	const login = async (user: LoginRequest) => {
 		const resp = await axiosRequest.post(`login`, user)
 		if (resp.status === 200) {
 			try {
-				userContext?.setUser(resp.data.user)
-				userContext?.setToken(resp.data.access_token)
+				console.log("response login data", resp.data)
+				userContext?.setUser(makeUser(resp.data))
+				userContext?.setToken(resp.data.token)
+				userContext?.setRefreshToken(resp.data.refreshToken)
 				return true
 			} catch (err) {
 				console.log("login error", err)
@@ -30,5 +43,5 @@ export const useUser = () => {
 		if (resp.status === 201) return true
 		return false
 	}
-	return { login, signIn }
+	return { login, signIn, user: userContext?.user }
 }

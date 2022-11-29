@@ -12,6 +12,11 @@ export const router = createBrowserRouter([
 		element: <Landing />,
 		errorElement: <Navigate to="/" />,
 	},
+	{
+		path: "/home",
+		element: <Home />,
+		errorElement: <Navigate to="/" />,
+	},
 
 	{
 		path: "/login",

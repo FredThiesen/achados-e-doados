@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Button } from "../../Components/Button"
 import { Input } from "../../Components/Input"
 import { useUser } from "../../Hooks/useUser"
@@ -13,12 +13,20 @@ import {
 	WrapperRow,
 	WrapperScreen,
 } from "./styles"
+import { isNull } from "lodash"
 
 export const AuthLogin = () => {
 	const navigate = useNavigate()
-	const { login } = useUser()
+	const { login, user } = useUser()
 	const [username, setUsername] = useState<string>("")
 	const [password, setPassword] = useState<string>("")
+
+	useEffect(() => {
+		if (!isNull(user)) {
+			alert(`Bem vindo, ${user?.name}!`)
+			navigate("/home")
+		}
+	}, [])
 
 	const handleLogin = async () => {
 		const status = await login({ username, password })
