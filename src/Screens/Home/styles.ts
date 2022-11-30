@@ -23,6 +23,7 @@ export const WrapperDonation = styled.div`
 	border-radius: 10px;
 	padding: 10px;
 	margin: 10px;
+	min-width: 300px;
 	justify-content: flex-start;
 	align-items: flex-start;
 `

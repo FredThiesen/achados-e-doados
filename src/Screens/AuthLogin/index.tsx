@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Button } from "../../Components/Button"
 import { Input } from "../../Components/Input"
 import { useUser } from "../../Hooks/useUser"
@@ -13,9 +13,12 @@ import {
 	WrapperRow,
 	WrapperScreen,
 } from "./styles"
-import { isNull } from "lodash"
+import { isEmpty, isNull } from "lodash"
+import { axiosRequest } from "../../Services"
+import { UserContext } from "../../Contexts/UserContext"
 
 export const AuthLogin = () => {
+	const userContext = useContext(UserContext)
 	const navigate = useNavigate()
 	const { login, user } = useUser()
 	const [username, setUsername] = useState<string>("")
@@ -23,8 +26,7 @@ export const AuthLogin = () => {
 
 	useEffect(() => {
 		if (!isNull(user)) {
-			alert(`Bem vindo, ${user?.name}!`)
-			navigate("/home")
+			userContext?.dropUser()
 		}
 	}, [])
 

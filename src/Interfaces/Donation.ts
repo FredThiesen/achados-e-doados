@@ -11,7 +11,7 @@ export enum DonationTipeEnum {
 	DELIVERY = "DELIVERY",
 }
 
-interface Item {
+export interface Item {
 	quantity: number
 	product: Product
 }
