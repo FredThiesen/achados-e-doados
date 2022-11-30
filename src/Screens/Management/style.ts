@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import colors from "../../Constants/colors";
 
 export const Wrapper = styled.div`
     width: 100%;
@@ -23,6 +24,12 @@ export const ColumnHeader = styled.th`
     border-bottom: 1px solid white;
     
 `
-export const Row = styled.tr`
-    
+export const ProductContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    background: ${colors.background};
+    width: 45%;
+    height: 100%;
+    border-radius: 10px;
+    margin: 0px 20px;
 `
