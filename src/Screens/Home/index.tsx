@@ -36,7 +36,7 @@ export const Home = () => {
 			setDonations(request.data)
 		}
 		axios()
-	}, [])
+	}, [userContext?.token])
 
 	const renderAllDonations = () => {
 		return (
