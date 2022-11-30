@@ -36,6 +36,7 @@ axiosRequest.interceptors.response.use(
 							resp?.data?.refresh_token || ""
 						)
 						axiosRequest.defaults.headers.authorization = `Bearer ${resp.data.access_token}`
+						window.location.reload()
 					}
 				})
 				.catch((e) => {
@@ -43,4 +44,7 @@ axiosRequest.interceptors.response.use(
 				})
 		}
 	}
+
 )
+
+
