@@ -11,4 +11,5 @@ export interface Product {
 	id: number
 	category: ProductCategoryEnum
 	description: string
+	enabled?: boolean
 }
