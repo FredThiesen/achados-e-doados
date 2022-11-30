@@ -9,7 +9,7 @@ export enum ProductCategoryEnum {
 
 export interface Product {
 	id: number
-	category: ProductCategoryEnum
+	category: string
 	description: string
 	enabled?: boolean
 }

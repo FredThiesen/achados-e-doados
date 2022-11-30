@@ -53,6 +53,7 @@ export const WrapperProductInputs = styled.div`
 	border-radius: 10px;
 	padding: 10px;
 	margin: 10px;
+	min-width: 300px;
 	justify-content: flex-start;
 `
 
@@ -65,4 +66,22 @@ export const WrapperInputs = styled.div`
 		width: 10px;
 		color: ${colors.orangeDark};
 	}
+	position: relative;
+`
+
+export const MissinInputsWarning = styled.div`
+	background: ${colors.orangeDark};
+	color: ${colors.dark};
+	width: 35px;
+	height: 35px;
+	border-radius: 25px;
+	border: 1px solid ${colors.dark};
+	position: absolute;
+	top: 0.1;
+	right: 0;
+	z-index: 100;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.5rem;
 `
