@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { Button } from "../../Components/Button"
 import colors from "../../Constants/colors"
 import { UserContext } from "../../Contexts/UserContext"
-import { Donation } from "../../Interfaces/Donation"
+import { Donation as TypeDonation } from "../../Interfaces/Donation"
 import { User } from "../../Interfaces/User"
 import { axiosRequest } from "../../Services"
 import { Title } from "../AuthLogin/styles"
@@ -17,12 +17,13 @@ import {
 	WrapperDonationList,
 	WrapperRow,
 } from "./styles"
-export const Home = () => {
+
+export const Donation = () => {
 	const userContext = useContext(UserContext)
 	const navigate = useNavigate()
 	const [users, setUsers] = useState<User[]>([])
-	const [donations, setDonations] = useState<Donation[]>([])
-	const [userDonations, setUserDonations] = useState<Donation[]>([])
+	const [donations, setDonations] = useState<TypeDonation[]>([])
+	const [userDonations, setUserDonations] = useState<TypeDonation[]>([])
 	const [loading, setLoading] = useState<boolean>(true)
 
 	const handleLogout = async () => {
@@ -51,7 +52,7 @@ export const Home = () => {
 		}
 	}, [userContext?.token])
 
-	const renderEmptyDonations = (donationList: Array<Donation>) => {
+	const renderEmptyDonations = (donationList: Array<TypeDonation>) => {
 		if (isEmpty(donationList)) {
 			return (
 				<>

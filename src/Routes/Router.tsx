@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate } from "react-router-dom"
 
 import { AuthLogin } from "../Screens/AuthLogin"
 import { AuthSignup } from "../Screens/AuthSignup"
+import { Donation } from "../Screens/Donation"
 import { Home } from "../Screens/Home"
 import { Landing } from "../Screens/Landing"
 import { SessionExpired } from "../Screens/SessionExpired"
@@ -29,8 +30,8 @@ export const router = createBrowserRouter([
 		errorElement: <Navigate to="/" />,
 	},
 	{
-		path: "/session-expired",
-		element: <SessionExpired />,
+		path: "/donation",
+		element: <Donation />,
 		errorElement: <Navigate to="/" />,
 	},
 ])

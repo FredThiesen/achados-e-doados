@@ -81,11 +81,11 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 			localStorage.setItem("refreshToken", refreshToken || "")
 		}
 	}, [refreshToken])
-	
+
 	useEffect(() => {
 		setToken(localStorage.getItem("token"))
 		setRefreshToken(localStorage.getItem("refreshToken"))
-	},[localStorage.getItem("refreshToken")])
+	}, [localStorage.getItem("refreshToken")])
 	return (
 		<UserContext.Provider
 			value={{

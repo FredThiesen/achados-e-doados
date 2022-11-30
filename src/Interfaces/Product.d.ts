@@ -7,7 +7,7 @@ enum ProductCategoryEnum {
 	FURNITURE = "FURNITURE",
 }
 
-interface Product {
+export interface Product {
 	id: number
 	category: ProductCategoryEnum
 	description: string
