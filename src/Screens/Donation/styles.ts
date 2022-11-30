@@ -47,3 +47,22 @@ export const WrapperRow = styled.div`
 	justify-content: space-between;
 	padding: 5px;
 `
+
+export const WrapperProductInputs = styled.div`
+	border: 1px solid ${colors.orangeDark};
+	border-radius: 10px;
+	padding: 10px;
+	margin: 10px;
+	justify-content: flex-start;
+`
+
+export const WrapperInputs = styled.div`
+	max-height: 800px;
+	overflow-y: scroll;
+	/* padding: 20px; */
+	//change scroll color
+	&::-webkit-scrollbar {
+		width: 10px;
+		color: ${colors.orangeDark};
+	}
+`

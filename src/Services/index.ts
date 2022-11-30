@@ -44,14 +44,9 @@ axiosRequest.interceptors.response.use(
 					console.log("error ao atualizar token", e)
 				})
 		}
-		if(error.response.status===403){
-			alert("Você não tem permissão para acessar essa página");
-			window.location.href = "/home";
+		if (error.response.status === 403) {
+			alert("Você não tem permissão para acessar essa página")
+			window.location.href = "/"
 		}
 	}
-
 )
-
-
-
-
