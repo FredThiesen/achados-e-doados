@@ -43,7 +43,7 @@ export const Management = ()=>{
 
     return (
         <div style={{display:'flex', justifyContent:'center'}}>
-            <input type='checkbox' checked={produto.enabled} id={`product_${produto.id}`} onChange={(e:any)=>handleChangeCheckbox(produto.id, e.target.checked)}  style={{width:'25px', height:'25px'}} />
+            <input type='checkbox' checked={produto.enabled} id={`product_${produto.id}`} onChange={(e:React.ChangeEvent<HTMLInputElement>)=>handleChangeCheckbox(produto.id, e.target.checked)}  style={{width:'25px', height:'25px'}} />
         </div>
     )
     }
