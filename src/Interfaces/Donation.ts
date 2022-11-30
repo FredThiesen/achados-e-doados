@@ -20,7 +20,6 @@ export interface Donation {
 	userName: string
 	itens: Array<Item>
 	status: DonationStatusEnum
-	requestDate: Date
 	donationDate?: Date
 }
 export interface itemDonation {
