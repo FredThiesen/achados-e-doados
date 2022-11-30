@@ -1,56 +1,50 @@
 import { isEmpty, isNull } from "lodash"
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Button } from "../../Components/Button"
-import colors from "../../Constants/colors"
+import { Input } from "../../Components/Input"
+
 import { UserContext } from "../../Contexts/UserContext"
-import { Donation as TypeDonation } from "../../Interfaces/Donation"
-import { User } from "../../Interfaces/User"
-import { axiosRequest } from "../../Services"
-import { Title } from "../AuthLogin/styles"
-import {
-	SubtitleDonation,
-	TitleDonation,
-	Wrapper,
-	WrapperDonations,
-	WrapperDonation,
-	WrapperDonationList,
-	WrapperRow,
-} from "./styles"
+import { Item } from "../../Interfaces/Donation"
+import { Product, ProductCategoryEnum } from "../../Interfaces/Product"
+
+import { Wrapper } from "./styles"
+
+const emptyProduct: Item = {
+	product: {
+		id: 0,
+		category: ProductCategoryEnum.CLOTHES,
+		description: "",
+	},
+	quantity: 1,
+}
 
 export const Donation = () => {
 	const userContext = useContext(UserContext)
 	const navigate = useNavigate()
-	const [users, setUsers] = useState<User[]>([])
-	const [donations, setDonations] = useState<TypeDonation[]>([])
-	const [userDonations, setUserDonations] = useState<TypeDonation[]>([])
-	const [loading, setLoading] = useState<boolean>(true)
+	const [products, setProducts] = useState<Item[]>([])
 
-	const handleLogout = async () => {
-		try {
-			userContext?.dropUser()
-			navigate("/login")
-		} catch (e) {
-			console.log(e)
-		}
+	const handleAddProduct = () => {
+		setProducts([...products, emptyProduct])
 	}
 
-	const handleGetDonations = async () => {
-		setLoading(true)
-		const request = await axiosRequest.get("donations")
-		setDonations(request.data)
-		setLoading(false)
+	const renderProductInputs = () => {
+		return products.map((product, index) => {
+			return (
+				<>
+					<Input placeholder="descrição do produto" type="text" />
+					<Input placeholder="quantidade" type="text" />
+				</>
+			)
+		})
 	}
 
-	const handleDonation = () => {
-		navigate("/donation")
-	}
+	return (
+		<Wrapper>
+			<h1>Fazer uma Doação</h1>
 
-	useEffect(() => {
-		if (!isNull(userContext?.token)) {
-			handleGetDonations()
-		}
-	}, [userContext?.token])
-
-	return <Wrapper></Wrapper>
+			{renderProductInputs()}
+			<Button title="Adicionar Produto" onClick={handleAddProduct} />
+		</Wrapper>
+	)
 }
