@@ -5,6 +5,7 @@ import { AuthSignup } from "../Screens/AuthSignup"
 import { Donation } from "../Screens/Donation"
 import { Home } from "../Screens/Home"
 import { Landing } from "../Screens/Landing"
+import { Management } from "../Screens/Management"
 import { SessionExpired } from "../Screens/SessionExpired"
 
 export const router = createBrowserRouter([
@@ -32,6 +33,11 @@ export const router = createBrowserRouter([
 	{
 		path: "/donation",
 		element: <Donation />,
+		errorElement: <Navigate to="/" />,
+	},
+	{
+		path: "/management",
+		element: <Management />,
 		errorElement: <Navigate to="/" />,
 	},
 ])

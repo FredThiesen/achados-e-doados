@@ -2,6 +2,7 @@ import axios from "axios"
 import { isEmpty } from "lodash"
 
 export const url = "https://timbeck.hopto.org/services"
+//export const url = "https://localhost:8080/api"
 
 export const axiosRequest = axios.create({
 	baseURL: `${url}/`,
@@ -36,11 +37,19 @@ axiosRequest.interceptors.response.use(
 							resp?.data?.refresh_token || ""
 						)
 						axiosRequest.defaults.headers.authorization = `Bearer ${resp.data.access_token}`
+						window.location.reload()
 					}
 				})
 				.catch((e) => {
 					console.log("error ao atualizar token", e)
 				})
 		}
+		if(error.response.status===403){
+			alert("Você não tem permissão para acessar essa página");
+			window.location.href = "/home";
+		}
 	}
+
 )
+
+
