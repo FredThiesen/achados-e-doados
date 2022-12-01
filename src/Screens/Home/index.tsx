@@ -28,6 +28,7 @@ export const Home = () => {
 	const [loading, setLoading] = useState<boolean>(true)
 
 	const handleLogout = async () => {
+		console.log("fazendo logout")
 		try {
 			userContext?.dropUser()
 			navigate("/login")
