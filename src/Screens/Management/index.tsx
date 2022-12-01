@@ -17,12 +17,13 @@ import Modal from "../../Components/Modal"
 import box from "../../Assets/box.svg"
 import { useDonations } from "../../Hooks/useDonations"
 import { ProductCategoryEnum, Product } from "../../Interfaces/Product"
+import { useNavigate } from "react-router-dom"
 
 export const Management = () => {
 	const [products, setProducts] = useState<Array<Product>>([])
 	const [donations, setDonations] = useState<Array<Donation>>([])
 	const { getCategoryName, getDonationStatus } = useDonations()
-
+    const navigate = useNavigate()
 	const [productEdit, setProductEdit] = useState<Product>({
 		category: ProductCategoryEnum.ELETRODOMESTIC,
 		enabled: true,
@@ -331,6 +332,14 @@ export const Management = () => {
 	return (
 		<Wrapper>
 			<Title>Gerenciamento da aplicação</Title>
+            <Button
+					title="Voltar"
+					titleColor={"colors.white"}
+					color={colors.orangeDark}
+					loading
+                    style={{position: "absolute", top: "5px", right: "10px", width:'100px'}}
+					onClick={()=>navigate('/home')}
+				/>
 			<div
 				style={{
 					width: "100%",

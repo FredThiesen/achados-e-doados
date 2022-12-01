@@ -21,6 +21,7 @@ export const Button = memo((props: ButtonProps) => {
 		loading = false,
 		onClick = () => null,
 		outline = false,
+		...moreProps
 	} = props
 
 	const renderTitle = () => {
@@ -37,6 +38,7 @@ export const Button = memo((props: ButtonProps) => {
 			color={color}
 			titleColor={titleColor}
 			outline={outline}
+			{...moreProps}
 		>
 			{renderTitle()}
 		</Wrapper>
