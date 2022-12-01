@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom"
 import { Button } from "../../Components/Button"
 import colors from "../../Constants/colors"
 import { UserContext } from "../../Contexts/UserContext"
-import { Donation, DonationStatusEnum } from "../../Interfaces/Donation"
+import { useDonations } from "../../Hooks/useDonations"
+import { Donation } from "../../Interfaces/Donation"
 import { User } from "../../Interfaces/User"
 import { axiosRequest } from "../../Services"
 import { Title } from "../AuthLogin/styles"
@@ -20,6 +21,7 @@ import {
 export const Home = () => {
 	const userContext = useContext(UserContext)
 	const navigate = useNavigate()
+	const { getDonationStatus } = useDonations()
 	const [users, setUsers] = useState<User[]>([])
 	const [donations, setDonations] = useState<Donation[]>([])
 	const [userDonations, setUserDonations] = useState<Donation[]>([])
@@ -76,21 +78,6 @@ export const Home = () => {
 		}
 	}
 
-	const getDonationStatus = (status: DonationStatusEnum) => {
-		switch (status) {
-			case DonationStatusEnum.APPROVED:
-				return "Aprovado"
-			case DonationStatusEnum.PENDING:
-				return "Pendente"
-			case DonationStatusEnum.REJECTED:
-				return "Rejeitado"
-			case DonationStatusEnum.CONCLUDED:
-				return "Concluído"
-			default:
-				return ""
-		}
-	}
-
 	const renderAllDonations = () => {
 		return (
 			<WrapperDonationList>
@@ -143,11 +130,15 @@ export const Home = () => {
 										return (
 											<p key={item.product.id}>
 												{" "}
-												{item.quantity}x -{" "}
-												{item.product.description}
+												{item.quantity}x - - - - - - - -
+												- {item.product.description}
 											</p>
 										)
 									})}
+								</SubtitleDonation>
+								<SubtitleDonation>
+									Status:{" "}
+									{getDonationStatus(userDonation.status)}
 								</SubtitleDonation>
 							</WrapperDonation>
 						)
@@ -161,6 +152,13 @@ export const Home = () => {
 	return (
 		<Wrapper>
 			<Title>Teste Home</Title>
+			{userContext?.user?.roles?.includes("ADMIN") && (
+				<Button
+					title="Gerenciar"
+					color={colors.pink}
+					onClick={() => navigate("/management")}
+				/>
+			)}
 			{loading ? <p>Carregando...</p> : null}
 			<WrapperRow>
 				<Button

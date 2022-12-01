@@ -21,7 +21,7 @@ import {
 
 export const Donation = () => {
 	const userContext = useContext(UserContext)
-	const { getProducts, createDonation } = useDonations()
+	const { getProducts, createDonation, getCategoryName } = useDonations()
 	const navigate = useNavigate()
 	const [productIndexes, setProductIndexes] = useState<Array<boolean>>([true])
 	const [availableProducts, setAvailableProducts] = useState<Product[]>([])
@@ -48,27 +48,6 @@ export const Donation = () => {
 			[]
 		)
 		setCategories(categories)
-	}
-
-	const getCategoryName = (category: ProductCategoryEnum) => {
-		switch (category) {
-			case ProductCategoryEnum.ELETRODOMESTIC:
-				return "Eletrodomésticos"
-			case ProductCategoryEnum.BEDROOM:
-				return "Quarto"
-			case ProductCategoryEnum.CLOTHES:
-				return "Roupas"
-			case ProductCategoryEnum.KITCHEN:
-				return "Cozinha"
-			case ProductCategoryEnum.TOYS:
-				return "Brinquedos"
-			case ProductCategoryEnum.FURNITURE:
-				return "Móveis"
-			// case ProductCategoryEnum.OTHER:
-			// 	return "Outros"
-			default:
-				return ""
-		}
 	}
 
 	const handleGetProducts = async () => {

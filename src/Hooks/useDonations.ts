@@ -1,5 +1,6 @@
-import { Donation } from "../Interfaces/Donation"
+import { Donation, DonationStatusEnum } from "../Interfaces/Donation"
 import { DonationRequest } from "../Interfaces/DonationRequest"
+import { ProductCategoryEnum } from "../Interfaces/Product"
 import { axiosRequest } from "../Services"
 
 export const useDonations = () => {
@@ -34,10 +35,49 @@ export const useDonations = () => {
 		}
 		return []
 	}
+
+	const getCategoryName = (category: ProductCategoryEnum) => {
+		switch (category) {
+			case ProductCategoryEnum.ELETRODOMESTIC:
+				return "Eletrodomésticos"
+			case ProductCategoryEnum.BEDROOM:
+				return "Quarto"
+			case ProductCategoryEnum.CLOTHES:
+				return "Roupas"
+			case ProductCategoryEnum.KITCHEN:
+				return "Cozinha"
+			case ProductCategoryEnum.TOYS:
+				return "Brinquedos"
+			case ProductCategoryEnum.FURNITURE:
+				return "Móveis"
+			// case ProductCategoryEnum.OTHER:
+			// 	return "Outros"
+			default:
+				return ""
+		}
+	}
+
+	const getDonationStatus = (status: DonationStatusEnum) => {
+		switch (status) {
+			case DonationStatusEnum.APPROVED:
+				return "Aprovado"
+			case DonationStatusEnum.PENDING:
+				return "Pendente"
+			case DonationStatusEnum.REJECTED:
+				return "Rejeitado"
+			case DonationStatusEnum.CONCLUDED:
+				return "Concluído"
+			default:
+				return ""
+		}
+	}
+
 	return {
 		getAllDonations,
 		getUserDonations,
 		createDonation,
 		getProducts,
+		getCategoryName,
+		getDonationStatus,
 	}
 }
