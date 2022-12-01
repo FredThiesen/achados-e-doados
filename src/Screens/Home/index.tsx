@@ -71,7 +71,7 @@ export const Home = () => {
 						Nenhuma doação ainda.
 					</TitleDonation>
 					<SubtitleDonation>
-						Faça uma doação clicando no botão abaixo
+						Faça uma doação clicando no botão acima
 					</SubtitleDonation>
 				</>
 			)
