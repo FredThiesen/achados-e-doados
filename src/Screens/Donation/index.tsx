@@ -8,7 +8,7 @@ import colors from "../../Constants/colors"
 import { UserContext } from "../../Contexts/UserContext"
 import { useDonations } from "../../Hooks/useDonations"
 import { Item } from "../../Interfaces/Donation"
-import { Product } from "../../Interfaces/Product"
+import { Product, ProductCategoryEnum } from "../../Interfaces/Product"
 
 import {
 	MissinInputsWarning,
@@ -24,26 +24,50 @@ export const Donation = () => {
 	const navigate = useNavigate()
 	const [productIndexes, setProductIndexes] = useState<Array<boolean>>([true])
 	const [availableProducts, setAvailableProducts] = useState<Product[]>([])
+	const [categories, setCategories] = useState<ProductCategoryEnum[]>([])
 	const [products, setProducts] = useState<Item[]>([
 		{
 			product: {
 				id: 0,
-				category: "Eletrodoméstico",
+				category: ProductCategoryEnum.ELETRODOMESTIC,
 				description: "",
 			},
 			quantity: 0,
 		},
 	])
-	const [categories, setCategories] = useState<string[]>([])
 
 	const getCategories = (resp: Array<Product>) => {
-		const categories = resp.reduce((acc: string[], curr: Product) => {
-			if (!acc.includes(curr.category)) {
-				acc.push(curr.category)
-			}
-			return acc
-		}, [])
+		const categories = resp.reduce(
+			(acc: ProductCategoryEnum[], curr: Product) => {
+				if (!acc.includes(curr.category)) {
+					acc.push(curr.category)
+				}
+				return acc
+			},
+			[]
+		)
 		setCategories(categories)
+	}
+
+	const getCategoryName = (category: ProductCategoryEnum) => {
+		switch (category) {
+			case ProductCategoryEnum.ELETRODOMESTIC:
+				return "Eletrodomésticos"
+			case ProductCategoryEnum.BEDROOM:
+				return "Quarto"
+			case ProductCategoryEnum.CLOTHES:
+				return "Roupas"
+			case ProductCategoryEnum.KITCHEN:
+				return "Cozinha"
+			case ProductCategoryEnum.TOYS:
+				return "Brinquedos"
+			case ProductCategoryEnum.FURNITURE:
+				return "Móveis"
+			// case ProductCategoryEnum.OTHER:
+			// 	return "Outros"
+			default:
+				return ""
+		}
 	}
 
 	const handleGetProducts = async () => {
@@ -60,7 +84,7 @@ export const Donation = () => {
 				...{
 					product: {
 						id: 0,
-						category: "Eletrodoméstico",
+						category: ProductCategoryEnum.ELETRODOMESTIC,
 						description: "",
 					},
 					quantity: 0,
@@ -78,11 +102,12 @@ export const Donation = () => {
 			newProducts[index] = {
 				product: {
 					id: 0,
-					category: "Eletrodoméstico",
+					category: ProductCategoryEnum.ELETRODOMESTIC,
 					description: "",
 				},
 				quantity: 0,
 			}
+			//@ts-ignore
 			newProducts[index].product.category = e.target.value
 			newProducts[index].product.description = ""
 			return newProducts
@@ -181,7 +206,7 @@ export const Donation = () => {
 								key={`${categoryIndex}-category`}
 								value={category}
 							>
-								{category}
+								{getCategoryName(category)}
 							</option>
 						))}
 					</select>

@@ -162,21 +162,22 @@ export const Home = () => {
 		<Wrapper>
 			<Title>Teste Home</Title>
 			{loading ? <p>Carregando...</p> : null}
-			<Button
-				title="Sair"
-				color={colors.orangeLight}
-				onClick={handleLogout}
-			/>
+			<WrapperRow>
+				<Button
+					title="Sair"
+					color={colors.orangeLight}
+					onClick={handleLogout}
+				/>
+				<Button
+					title="Fazer doação"
+					color={colors.green}
+					onClick={handleDonation}
+				/>
+			</WrapperRow>
 			<WrapperRow style={{ marginBottom: 80 }}>
 				{renderUserDonations()}
 				{renderAllDonations()}
 			</WrapperRow>
-
-			<Button
-				title="Fazer doação"
-				color={colors.green}
-				onClick={handleDonation}
-			/>
 		</Wrapper>
 	)
 }
