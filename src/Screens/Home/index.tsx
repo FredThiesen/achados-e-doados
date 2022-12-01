@@ -151,7 +151,7 @@ export const Home = () => {
 
 	return (
 		<Wrapper>
-			<Title>Teste Home</Title>
+			<Title>Home</Title>
 			{userContext?.user?.roles?.includes("ADMIN") && (
 				<Button
 					title="Gerenciar"
