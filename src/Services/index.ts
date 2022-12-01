@@ -1,5 +1,5 @@
 import axios from "axios"
-import { isEmpty, isNull } from "lodash"
+import { isEmpty } from "lodash"
 
 export const url = "https://timbeck.hopto.org/services"
 //export const url = "https://localhost:8080/api"
@@ -10,11 +10,9 @@ export const axiosRequest = axios.create({
 		"Content-Type": "application/json",
 	},
 })
-axiosRequest.defaults.headers.authorization = !isNull(
-	localStorage.getItem("token")
-)
-	? `Bearer ${localStorage.getItem("token")}`
-	: ""
+axiosRequest.defaults.headers.authorization = `Bearer ${localStorage.getItem(
+	"token"
+)}`
 
 axiosRequest.interceptors.response.use(
 	function (response) {
