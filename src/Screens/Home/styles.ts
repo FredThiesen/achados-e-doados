@@ -11,9 +11,8 @@ export const WrapperDonationList = styled.div`
 `
 
 export const WrapperDonations = styled.div`
-	height: 100%;
 	padding: 5px;
-	min-height: 400px;
+	height: 800px;
 	overflow-y: scroll;
 	border: 1px solid white;
 `

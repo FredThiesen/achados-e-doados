@@ -30,7 +30,8 @@ export const Donation = () => {
 		{
 			product: {
 				id: 0,
-				category: ProductCategoryEnum.ELETRODOMESTIC,
+				//@ts-ignore
+				category: "",
 				description: "",
 			},
 			quantity: 0,
@@ -194,11 +195,17 @@ export const Donation = () => {
 							width: "70%",
 						}}
 					>
+						<option value={undefined}>
+							Selecione uma categoria
+						</option>
 						{categories.map((category, categoryIndex) => (
 							<option
 								key={`${categoryIndex}-category`}
 								value={category}
-								selected={category === products[index].product.category}
+								selected={
+									category ===
+									products[index].product.category
+								}
 							>
 								{getCategoryName(category)}
 							</option>
