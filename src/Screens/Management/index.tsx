@@ -5,19 +5,25 @@ import { axiosRequest } from "../../Services"
 import {Input} from "../../Components/Input"
 import {Button} from "../../Components/Button"
 import colors from "../../Constants/colors"
+import {Donation} from '../../Interfaces/Donation'
+import Modal from "../../Components/Modal"
 interface Product{
     id: number,
     description:string,
     category:string,
     enabled:boolean
 }
+
 export const Management = ()=>{
     const [products, setProducts] = useState<Array<Product>>([])
+    const [donations, setDonations] = useState<Array<Donation>>([])
+
     const [productEdit, setProductEdit]=useState<Product>({category:'ELETRODOMESTIC', enabled:true} as Product)
 
 
     useEffect(()=>{
         getProducts();
+        getDonations();
 
     },[])
     const saveProduct=async()=>{
@@ -28,6 +34,10 @@ export const Management = ()=>{
     const getProducts=async()=>{
         const request = await axiosRequest.get("products")
         setProducts(request.data)
+    }
+    const getDonations=async()=>{
+        const request = await axiosRequest.get("donations")
+        setDonations(request.data)
     }
     const handleChangeCheckbox = async (id:number, value:boolean)=>{
         const request = await axiosRequest.put(`products/${id}?enable=${value}`,)
@@ -64,26 +74,79 @@ export const Management = ()=>{
     const renderTableProdutos = () => {
 
         return(
-            <table style={{border:'1px solid white', padding:'20px', borderRadius:'10px', width:'45%'}}>
-                <thead>
-                    <tr>
-                        <ColumnHeader>Descrição</ColumnHeader>
-                        <ColumnHeader>Tipo</ColumnHeader>
-                        <ColumnHeader>Habilitado</ColumnHeader>
-                    </tr>
-                </thead>
-                <tbody>
-                    {products.map((produto:Product)=>{
-                        return(
-                            <tr>
-                            <Column style={{width:'400px'}}>{produto.description}</Column>
-                            <Column >{produto.category}</Column>
-                            <Column>{renderHabilitarProduto(produto)}</Column>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
+            <div style={{height:'400px'}}>
+
+                <table style={{border:'1px solid white', padding:'20px', borderRadius:'10px', display:'block', width:'100%', overflow:'auto',background:colors.background}}>
+                    <thead >
+                        <tr>
+                            <ColumnHeader>Descrição</ColumnHeader>
+                            <ColumnHeader>Tipo</ColumnHeader>
+                            <ColumnHeader>Habilitado</ColumnHeader>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {products.map((produto:Product)=>{
+                            return(
+                                <tr>
+                                <Column style={{width:'400px'}}>{produto.description}</Column>
+                                <Column >{produto.category}</Column>
+                                <Column>{renderHabilitarProduto(produto)}</Column>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        )
+    }
+    const renderTableDonations = () => {
+
+        return(
+            <div style={{height:'400px'}}>
+
+                <table style={{border:'1px solid white', padding:'20px', borderRadius:'10px', width:'100%', background:colors.background}}>
+                    <thead >
+                        <tr>
+                            <ColumnHeader>Usuário</ColumnHeader>
+                            <ColumnHeader>Data</ColumnHeader>
+                            <ColumnHeader>Status</ColumnHeader>
+                            <ColumnHeader>Itens</ColumnHeader>
+                            <ColumnHeader>Confirmar</ColumnHeader>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {donations.map((donation:any)=>{
+                            return(
+                                <tr>
+                                <Column style={{width:'200px'}}>{donation.userName}</Column>
+                                <Column style={{width:'200px'}}>{new Date(donation.donationDate).toLocaleDateString()}</Column>
+                                <Column style={{width:'200px'}}>{donation.status}</Column>
+                                <Column style={{width:'200px'}}>items</Column>
+                                <Column style={{width:'200px'}}>{renderConfirmDonation(donation)}</Column>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        )
+    }
+    const openModal=()=>{
+        {Modal.open({
+			renderContent: ()=>{<h1 style={{background:'red', fontSize:'5em'}}>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h1>},
+		        })}
+    }
+    const renderConfirmDonation = (donation:Donation) => {
+        return(
+            <div>
+                <Button
+						title="Confirmar Doação"
+						titleColor={'colors.white'}
+						color={colors.orangeDark}
+						loading
+						onClick={openModal}
+					/>
+            </div>
         )
     }
     const renderProdutos = () => {
@@ -119,13 +182,17 @@ export const Management = ()=>{
     return(
         <Wrapper>
             <Title>Gerenciamento da aplicação</Title>
-            <div style={{width:'100%', display:'flex', flexDirection:'row', justifyContent:'center', marginTop:'30px'}}>
+            <div style={{width:'100%', display:'flex', flexDirection:'row', justifyContent:'center', marginTop:'30px', height:'100%', alignItems:'flex-start'}}>
                 {renderTableProdutos()}   
                 <ProductContainer>
                     {renderProdutos()}  
                 </ProductContainer> 
-            </div> 
+            </div>
+            <div>
                
+            {renderTableDonations()} 
+            </div> 
+            
         </Wrapper>
     )
 }

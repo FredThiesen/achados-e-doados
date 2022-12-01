@@ -21,6 +21,7 @@ export const ColumnHeader = styled.th`
     padding: 0.5rem;
     font-size:2em;
     font-weight: 'bold'; 
+    text-align: left;
     border-bottom: 1px solid white;
     
 `
@@ -29,7 +30,7 @@ export const ProductContainer = styled.div`
     flex-direction: column;
     background: ${colors.background};
     width: 45%;
-    height: 100%;
+    height:400px;
     border-radius: 10px;
     margin: 0px 20px;
 `
