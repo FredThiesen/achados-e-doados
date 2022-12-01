@@ -264,6 +264,7 @@ export const Donation = () => {
 							</option>
 						))}
 					</select>
+					
 				</WrapperProductInputs>
 			)
 		})
@@ -272,6 +273,12 @@ export const Donation = () => {
 	return (
 		<Wrapper>
 			<h1>Fazer uma Doação</h1>
+			<Button
+					title="Voltar"
+					color={colors.orangeDark}
+					onClick={() => navigate("/home")}
+					style={{position:'absolute', top:'0px', right:'10px'}}
+				/>
 			<WrapperRow>
 				<Button
 					title="Adicionar"
