@@ -32,8 +32,10 @@ export const AuthLogin = () => {
 
 	const handleLogin = async () => {
 		const status = await login({ username, password })
-		if (status) return navigate("/home")
-		alert("Erro ao fazer login")
+		setTimeout(() => {
+			if (status) return navigate("/home")
+		}, 2500)
+		if (!status) alert("Erro ao fazer login")
 	}
 
 	return (
