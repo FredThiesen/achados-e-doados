@@ -277,7 +277,7 @@ export const Donation = () => {
 					title="Voltar"
 					color={colors.orangeDark}
 					onClick={() => navigate("/home")}
-					style={{position:'absolute', top:'0px', right:'10px'}}
+					style={{position:'absolute', top:'0px', right:'10px', width:'90px'}}
 				/>
 			<WrapperRow>
 				<Button
