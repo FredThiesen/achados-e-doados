@@ -209,7 +209,7 @@ export const Management = ()=>{
                     {renderProdutos()}  
                 </ProductContainer> 
             </div>
-            <div>
+            <div style={{marginTop:'30px'}}>
                
             {renderTableDonations()} 
             </div> 
