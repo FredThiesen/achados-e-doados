@@ -2,6 +2,7 @@ import { isEmpty, isUndefined } from "lodash"
 import React, { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Button } from "../../Components/Button"
+import Modal from "../../Components/Modal"
 
 import colors from "../../Constants/colors"
 
@@ -151,7 +152,20 @@ export const Donation = () => {
 
 	const handleConfirmDonation = async () => {
 		const request = makeDonationRequest()
-		if (!isUndefined(request.userName)) await createDonation(request)
+		if (!isUndefined(request.userName)) {
+			const resp = await createDonation(request)
+			if (resp) {
+				Modal.open({
+					renderContent: () => (
+						<h1 style={{ color: colors.orangeDark }}>
+							Doação Realizada com sucesso!{" "}
+						</h1>
+					),
+				})
+
+				navigate("/home")
+			}
+		}
 	}
 
 	useEffect(() => {

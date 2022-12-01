@@ -4,6 +4,7 @@ import GlobalStyle from "./globalStyle"
 import { UserProvider } from "./Contexts/UserContext"
 import { router } from "./Routes/Router"
 import { RouterProvider } from "react-router-dom"
+import { Modal } from "./Components/Modal"
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 root.render(
@@ -11,6 +12,7 @@ root.render(
 	<>
 		<GlobalStyle />
 		<UserProvider>
+			<Modal />
 			<RouterProvider router={router} />
 		</UserProvider>
 	</>
