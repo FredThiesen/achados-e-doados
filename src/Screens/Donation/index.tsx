@@ -198,6 +198,7 @@ export const Donation = () => {
 							<option
 								key={`${categoryIndex}-category`}
 								value={category}
+								selected={category === products[index].product.category}
 							>
 								{getCategoryName(category)}
 							</option>
