@@ -34,3 +34,15 @@ export const ProductContainer = styled.div`
     border-radius: 10px;
     margin: 0px 20px;
 `
+export const List= styled.ul`
+    list-style: none;
+    padding: 0;
+    margin: 10px 0px;
+
+`
+export const ListItem = styled.li`
+    color: ${colors.black};
+    display: flex;
+    align-items:center;
+    width: 100%;
+`

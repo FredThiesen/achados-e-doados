@@ -1,12 +1,13 @@
 
 import React, { useEffect, useState } from "react"
-import { Wrapper, Title, Column, ColumnHeader,ProductContainer } from "./style"
+import { Wrapper, Title, Column, ColumnHeader,ProductContainer, List, ListItem } from "./style"
 import { axiosRequest } from "../../Services"
 import {Input} from "../../Components/Input"
 import {Button} from "../../Components/Button"
 import colors from "../../Constants/colors"
-import {Donation} from '../../Interfaces/Donation'
+import {Donation, itemDonation} from '../../Interfaces/Donation'
 import Modal from "../../Components/Modal"
+import box from '../../Assets/box.svg'
 interface Product{
     id: number,
     description:string,
@@ -121,7 +122,7 @@ export const Management = ()=>{
                                 <Column style={{width:'200px'}}>{donation.userName}</Column>
                                 <Column style={{width:'200px'}}>{new Date(donation.donationDate).toLocaleDateString()}</Column>
                                 <Column style={{width:'200px'}}>{donation.status}</Column>
-                                <Column style={{width:'200px'}}>items</Column>
+                                <Column style={{width:'200px'}}>{renderConfirmDonation(donation)}</Column>
                                 <Column style={{width:'200px'}}>{renderConfirmDonation(donation)}</Column>
                                 </tr>
                             )
@@ -131,20 +132,40 @@ export const Management = ()=>{
             </div>
         )
     }
-    const openModal=()=>{
-        {Modal.open({
-			renderContent: ()=>{<h1 style={{background:'red', fontSize:'5em'}}>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h1>},
-		        })}
+    const getItem=(item:itemDonation)=>{
+        return <div>
+            <ListItem>
+            <img src={box} alt="logo" width={"50px"} />
+            <span style={{fontSize:'1.5em', fontWeight:'bold', marginLeft:'10px'}}>{item.product.description}</span>
+            <span style={{fontSize:'1.5em', fontWeight:'bold'}}>  &nbsp;&nbsp;&nbsp;x {item.quantity}</span>
+            </ListItem>
+        </div>
     }
+    const openModal = (donation:Donation) => {
+		Modal.open({
+			renderContent: () => (
+				<div style={{width:'100%'}}>
+					<h1 style={{color:'black'}}>Itens do pedido</h1>
+                    <div style={{width:'100%', display:'flex', alignItems:'flex-start'}}>
+                        <List>
+                            {donation.itens.map((item:any)=>(
+                                getItem(item)
+                            ))}
+                        </List>
+                    </div>
+				</div>
+			),
+		})
+	}
     const renderConfirmDonation = (donation:Donation) => {
         return(
             <div>
                 <Button
-						title="Confirmar Doação"
+						title="Abrir"
 						titleColor={'colors.white'}
 						color={colors.orangeDark}
 						loading
-						onClick={openModal}
+						onClick={()=>openModal(donation)}
 					/>
             </div>
         )
