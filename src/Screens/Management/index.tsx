@@ -45,6 +45,10 @@ export const Management = () => {
 		const request = await axiosRequest.get("donations")
 		setDonations(request.data)
 	}
+    const confirmDonation = async (donation: Donation) => {
+        const request = await axiosRequest.put(`donations/${donation.id}`)
+        getDonations()
+    }
 	const handleChangeCheckbox = async (id: number, value: boolean) => {
 		const request = await axiosRequest.put(`products/${id}?enable=${value}`)
 		let productsCopy = [...products]
@@ -128,6 +132,19 @@ export const Management = () => {
 			</div>
 		)
 	}
+    const renderOpenItem = (donation: Donation) => {
+        return (
+			<div>
+				<Button
+					title="Abrir"
+					titleColor={"colors.white"}
+					color={colors.orangeDark}
+					loading
+					onClick={()=>openModal(donation)}
+				/>
+			</div>
+		)
+    }
 	const renderTableDonations = () => {
 		return (
 			<div style={{ height: "400px" }}>
@@ -165,7 +182,7 @@ export const Management = () => {
 										{getDonationStatus(donation.status)}
 									</Column>
 									<Column style={{ width: "200px" }}>
-										{renderConfirmDonation(donation)}
+										{renderOpenItem(donation)}
 									</Column>
 									<Column style={{ width: "200px" }}>
 										{renderConfirmDonation(donation)}
@@ -224,11 +241,11 @@ export const Management = () => {
 		return (
 			<div>
 				<Button
-					title="Abrir"
+					title="Confirmar"
 					titleColor={"colors.white"}
 					color={colors.orangeDark}
 					loading
-					onClick={() => openModal(donation)}
+					onClick={()=>confirmDonation(donation)}
 				/>
 			</div>
 		)
